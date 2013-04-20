@@ -5,10 +5,8 @@ import httplib
 from datetime import datetime
 
 import pyes
-from werkzeug import generate_password_hash, check_password_hash
-from flask.ext.login import UserMixin
 
-from fundfind.config import config
+from fundingharvest.config import config
 
 def init_db():
     conn, db = get_conn()
@@ -145,12 +143,3 @@ class Funder(DomainObject):
     
 class FundingOpp(DomainObject):
     __type__ = 'funding_opportunity'
-    
-class Account(DomainObject, UserMixin):
-    __type__ = 'account'
-
-    def set_password(self, password):
-        self.data['password'] = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.data['password'], password)
