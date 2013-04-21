@@ -79,7 +79,7 @@ class DomainObject(UserDict.IterableUserDict):
             
         conn.index(data, db, cls.__type__, id_)
         return cls(**data)
-
+        
     @classmethod
     def delete_by_query(cls, query):
         url = "127.0.0.1:9200"
