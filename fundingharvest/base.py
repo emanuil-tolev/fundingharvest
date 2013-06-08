@@ -48,6 +48,10 @@ def run():
     esrc_time = (datetime.now() - now).total_seconds()
     logging.info('Harvesting END. Took {0} seconds'.format(esrc_time))
     
+    if not esrc_records:
+        logging.error('Error while harvesting. Exiting.')
+        return 1
+    
     logging.info('Indexing results START')
     now = datetime.now()
     esrc.save_multiple(esrc_records)

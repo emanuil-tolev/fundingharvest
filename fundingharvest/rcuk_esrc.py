@@ -16,10 +16,15 @@ class EsrcRssHarvester(RSSHarvester):
         records = []
         
         feed = self.load_rss(self.feed_url)
+        if not feed:
+            return None
+            
         for entry in feed['entries']:
             record = {}
             record['title'] = entry['title']
             record['url'] = entry['feedburner_origlink']
+            record['license'] = {'type': 'default-copyright'}
+            record['origin'] = 'harvested'
             records.append(deepcopy(record))
         
         return records
