@@ -14,7 +14,7 @@ setup(
     'requests==1.1.0',
     'parsedatetime==0.8.7',
     'feedparser==5.1.3',
-    ]
+    ],
     # TODO look for other potentially useful classifiers
     classifiers = [
         'Development Status :: 3 - Alpha',
