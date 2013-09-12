@@ -3,6 +3,10 @@ from copy import deepcopy
 from fundingharvest.rss import RSSHarvester
 
 ESRC_FEED_URL = 'http://feeds.feedburner.com/ESRCCurrentFundingOpportunities?format=xml'
+DEFAULT_COPYRIGHT_LICENSE = {
+    'type': 'default-copyright',
+    'title': 'Default Copyright',
+}
 
 class EsrcRssHarvester(RSSHarvester):
     feed_url = None
@@ -23,7 +27,7 @@ class EsrcRssHarvester(RSSHarvester):
             record = {}
             record['title'] = entry['title']
             record['url'] = entry['feedburner_origlink']
-            record['license'] = {'type': 'default-copyright'}
+            record['license'] = DEFAULT_COPYRIGHT_LICENSE
             record['origin'] = 'harvested'
             records.append(deepcopy(record))
         
