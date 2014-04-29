@@ -1,5 +1,5 @@
 from copy import deepcopy
-import dateutil
+from dateutil.parser import parse as parse_datetime
 
 from fundingharvest.json_harvester import JSONHarvester
 
@@ -43,7 +43,8 @@ class CardiffHarvester(JSONHarvester):
             record['origin'] = ORIGIN
             record['origin_method'] = 'harvested'
             record['tags'] = opportunity['levels_of_study'] + opportunity['regions']
-            record['closing_date'] = dateutil.parser.parse(opportunity['closing_date'], dayfirst=True)
+            if opportunity['closing_date']:
+                record['closing_date'] = parse_datetime(opportunity['closing_date'], dayfirst=True)
             records.append(deepcopy(record))
 
         return records
